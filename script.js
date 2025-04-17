@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const resultText = document.getElementById('result');
     const darkModeButton = document.getElementById('dark-button');
+    const correctSound = new Audio('assets/correct.mp3');
+    const wrongSound = new Audio('assets/wrong.mp3');
 
     // Tengo traccia della modalità di gioco
     let isHardMode = false;
@@ -104,9 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Controllo se la nazione selezionata è uguale alla nazione corrente
         if (selectedCountry.name.common === currentCountry.name.common) {
             console.log('Risposta corretta:', selectedCountry.name.common);
-            // Se è corretta, mostro il messaggio di successo
+            // Se è corretta, mostro il messaggio di successo e riproduco il suono
             resultText.textContent = 'Corretto!';
             resultText.style.color = 'green';
+            correctSound.play();
             // Coloro di verde il pulsante corretto
             buttons.forEach(button => {
                 if (button.textContent === currentCountry.name.common) {
@@ -118,9 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
             correctAnswers++;
         } else {
             console.log('Risposta sbagliata:', selectedCountry.name.common);
-            // Se è sbagliata, mostro il messaggio di errore e la risposta corretta
+            // Se è sbagliata, mostro il messaggio di errore e la risposta corretta, inoltre riproduco il suono
             resultText.textContent = `Sbagliato! La risposta corretta era ${currentCountry.name.common}.`;
             resultText.style.color = 'red';
+            wrongSound.play();
             // Coloro di rosso il pulsante sbagliato e di verde il corretto
             const buttons = optionsContainer.querySelectorAll('button');
             buttons.forEach(button => {
@@ -153,15 +157,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkAnswerHard(userAnswer) {
         // Controllo se la risposta dell'utente è corretta
         if (userAnswer.toLowerCase() === currentCountry.name.common.toLowerCase()) {
-            // Se è corretta, mostro il messaggio di successo
+            // Se è corretta, mostro il messaggio di successo e riproduco il suono
             resultText.textContent = 'Corretto!';
             resultText.style.color = 'green';
+            correctSound.play();
             // Incremento il punteggio delle risposte corrette
             correctAnswers++;
         } else {
-            // Se è sbagliata, mostro il messaggio di errore e la risposta corretta
+            // Se è sbagliata, mostro il messaggio di errore e la risposta corretta, inoltre riproduco il suono
             resultText.textContent = `Sbagliato! La risposta corretta era ${currentCountry.name.common}.`;
             resultText.style.color = 'red';
+            wrongSound.play();
         }
     
         // Incremento il numero di risposte
@@ -183,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateScore() {
         const percentage = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0;
         const scoreElement = document.getElementById('punteggio-numero');
-        scoreElement.textContent = `${correctAnswers} - ${percentage}%`;
+        scoreElement.textContent = `${correctAnswers} / ${totalAnswers} - ${percentage}%`;
     }
 
     // Evento di reset del punteggio
