@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultText = document.getElementById('result');
     const darkModeButton = document.getElementById('dark-button');
 
+    // Tengo traccia della modalità di gioco
+    let isHardMode = false;
+
+    // Chiedo all'utente se vuole abilitare la modalità Hard
+    isHardMode = window.confirm("Vuoi abilitare la modalità Hard? (Ok per Hard Mode, Annulla per Easy Mode)");
+
     // Creo l'array delle nazioni e la variabile per la nazione corrente
     let countries = [];
     let currentCountry = {};
@@ -38,17 +44,48 @@ document.addEventListener('DOMContentLoaded', () => {
         // Mostro la bandiera della nazione casuale
         flagImg.src = currentCountry.flags.png;
 
-        // Creo i pulsanti per le varie nazioni dell'array
-        randomCountries.forEach(country => {
-            // Creo il pulsante nel DOM
-            const button = document.createElement('button');
-            // Nomino il pulsante con il nome della nazione
-            button.textContent = country.name.common;
-            // Creo un evento al click del pulsante che controlla se la risposta è corretta
-            button.addEventListener('click', () => checkAnswer(country));
-            // Aggiungo il pulsante al contenitore delle opzioni per renderlo visibile
-            optionsContainer.appendChild(button);
-        });
+        // Setup della modalità hard
+        if (isHardMode) {
+            // Contenitore per input e pulsante
+            const inputContainer = document.createElement('div');
+            // Usa Flexbox per allineare gli elementi
+            inputContainer.style.display = 'flex';
+            // Spaziatura tra input e pulsante
+            inputContainer.style.gap = '10px';
+
+            // Creo l'input per la risposta
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = 'Nome della nazione in inglese';
+            input.id = 'answer-input';
+
+            // Creo il pulsante di invio
+            const submitButton = document.createElement('button');
+            submitButton.textContent = 'Invia';
+            submitButton.addEventListener('click', () => {
+                const userAnswer = input.value.trim();
+                checkAnswerHard(userAnswer);
+            });
+
+            // Aggiungo input e pulsante al contenitore
+            inputContainer.appendChild(input);
+            inputContainer.appendChild(submitButton);
+
+            // Aggiungo il contenitore al DOM
+            optionsContainer.appendChild(inputContainer);
+        } else { // Setup della modalità easy
+            // Creo i pulsanti per le varie nazioni dell'array
+            randomCountries.forEach(country => {
+                // Creo il pulsante nel DOM
+                const button = document.createElement('button');
+                // Nomino il pulsante con il nome della nazione
+                button.textContent = country.name.common;
+                // Creo un evento al click del pulsante che controlla se la risposta è corretta
+                button.addEventListener('click', () => checkAnswerEasy(country));
+                // Aggiungo il pulsante al contenitore delle opzioni per renderlo visibile
+                optionsContainer.appendChild(button);
+            });
+        }
     }
 
     // Funzione per mescolare le nazioni 
@@ -59,8 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return shuffled.slice(0, count);
     }
 
-    // Funzione per controllare se la risposta è corretta
-    function checkAnswer(selectedCountry) {
+    // Funzione per controllare la risposta in modalità easy
+    function checkAnswerEasy(selectedCountry) {
         // Controllo se la nazione selezionata è uguale alla nazione corrente
         if (selectedCountry.name.common === currentCountry.name.common) {
             // Se è corretta, mostro il messaggio di successo
@@ -85,6 +122,36 @@ document.addEventListener('DOMContentLoaded', () => {
             button.disabled = true;
         });
 
+        // Mostro il pulsante "Next" per passare alla prossima domanda
+        nextBtn.style.display = 'block';
+    }
+
+    // Funzione per controllare la risposta in modalità hard
+    function checkAnswerHard(userAnswer) {
+        // Controllo se la risposta dell'utente è corretta
+        if (userAnswer.toLowerCase() === currentCountry.name.common.toLowerCase()) {
+            // Se è corretta, mostro il messaggio di successo
+            resultText.textContent = 'Corretto!';
+            resultText.style.color = 'green';
+            // Incremento il punteggio delle risposte corrette
+            correctAnswers++;
+        } else {
+            // Se è sbagliata, mostro il messaggio di errore e la risposta corretta
+            resultText.textContent = `Sbagliato! La risposta corretta era ${currentCountry.name.common}.`;
+            resultText.style.color = 'red';
+        }
+    
+        // Incremento il numero di risposte
+        totalAnswers++;
+        // Aggiorno il punteggio
+        updateScore();
+    
+        // Disabilito l'input e il pulsante di invio
+        const input = document.getElementById('answer-input');
+        input.disabled = true;
+        const submitButton = optionsContainer.querySelector('button');
+        submitButton.disabled = true;
+    
         // Mostro il pulsante "Next" per passare alla prossima domanda
         nextBtn.style.display = 'block';
     }
