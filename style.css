@@ -70,6 +70,7 @@ body.dark-mode #result {
     align-items: center; 
     width: 100%; 
     position: relative;
+    margin-top: 20px;
 }
 
 #punteggio-numero {
@@ -98,6 +99,7 @@ body.dark-mode #result {
 }
 
 #flag-container {
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -129,6 +131,7 @@ body.dark-mode #result {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 #next-btn:hover {
