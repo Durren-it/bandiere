@@ -61,6 +61,32 @@ body.dark-mode #result {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+#punteggio {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%; 
+    position: relative;
+}
+
+#punteggio-numero {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+    gap: 10px; 
+}
+
+#punteggio-reset {
+    margin-left: auto; 
+    cursor: pointer;
 }
 
 #quiz-container {
@@ -92,7 +118,6 @@ body.dark-mode #result {
     cursor: pointer;
 }
 
-/* Evidenzio il bottone durante l'hover scurendolo rispetto al colore originale */
 #options-container button:hover {
     background: #0056b3;
 }
@@ -106,7 +131,6 @@ body.dark-mode #result {
     cursor: pointer;
 }
 
-/* Evidenzio il bottone durante l'hover scruendolo rispetto al colore origniale */
 #next-btn:hover {
     background: #218838;
 }

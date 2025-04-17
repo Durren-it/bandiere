@@ -8,9 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultText = document.getElementById('result');
     const darkModeButton = document.getElementById('dark-button');
 
-    // creo l'array delle nazioni e la variabile per la nazione corrente
+    // Creo l'array delle nazioni e la variabile per la nazione corrente
     let countries = [];
     let currentCountry = {};
+
+    // Creo le variabili per il punteggio
+    let totalAnswers = 0;
+    let correctAnswers = 0;
 
     // Funzione per recuperare le nazioni dall'API e partire con la prossima domanda
     async function fetchCountries() {
@@ -62,11 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
             // Se è corretta, mostro il messaggio di successo
             resultText.textContent = 'Corretto!';
             resultText.style.color = 'green';
+            // Incremento il punteggio delle risposte corrette
+            correctAnswers++;
         } else {
             // Se è sbagliata, mostro il messaggio di errore e la risposta corretta
             resultText.textContent = `Sbagliato! La risposta corretta era ${currentCountry.name.common}.`;
             resultText.style.color = 'red';
         }
+
+        // Incremento il numero di risposte
+        totalAnswers++;
+        // Aggiorno il punteggio
+        updateScore();
 
         // Disabilito i pulsanti delle opzioni per evitare ulteriori clic
         const buttons = optionsContainer.querySelectorAll('button');
@@ -77,6 +88,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Mostro il pulsante "Next" per passare alla prossima domanda
         nextBtn.style.display = 'block';
     }
+
+    // Funzione per la gestione del punteggio
+    function updateScore() {
+        const percentage = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0;
+        const scoreElement = document.getElementById('punteggio-numero');
+        scoreElement.textContent = `${correctAnswers} - ${percentage}%`;
+    }
+
+    // Evento di reset del punteggio
+    const resetButton = document.getElementById('punteggio-reset');
+    resetButton.addEventListener('click', () => {
+        totalAnswers = 0;
+        correctAnswers = 0;
+        updateScore();
+    });
 
     // Assegno al bottone "Next" l'evento per passare alla prossima domanda
     nextBtn.addEventListener('click', newQuestion);
