@@ -68,6 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
             resultText.style.color = 'red';
         }
 
+        // Disabilito i pulsanti delle opzioni per evitare ulteriori clic
+        const buttons = optionsContainer.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.disabled = true;
+        });
+
         // Mostro il pulsante "Next" per passare alla prossima domanda
         nextBtn.style.display = 'block';
     }
