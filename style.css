@@ -142,3 +142,27 @@ body.dark-mode #result {
     margin-top: 20px;
     font-weight: bold;
 }
+
+/* Stili bottoni risposte giuste e sbagliate */
+
+#options-container button.correct {
+    background-color: #28a745 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+#options-container button.wrong {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+body.dark-mode #options-container button.correct {
+    background-color: #28a745 !important;
+    color: #fff !important;
+}
+
+body.dark-mode #options-container button.wrong {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+}

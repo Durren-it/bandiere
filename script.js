@@ -98,17 +98,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Funzione per controllare la risposta in modalità easy
     function checkAnswerEasy(selectedCountry) {
+        const buttons = optionsContainer.querySelectorAll('button');
+        console.log('Pulsanti trovati:', buttons);
+
         // Controllo se la nazione selezionata è uguale alla nazione corrente
         if (selectedCountry.name.common === currentCountry.name.common) {
+            console.log('Risposta corretta:', selectedCountry.name.common);
             // Se è corretta, mostro il messaggio di successo
             resultText.textContent = 'Corretto!';
             resultText.style.color = 'green';
+            // Coloro di verde il pulsante corretto
+            buttons.forEach(button => {
+                if (button.textContent === currentCountry.name.common) {
+                    console.log('Pulsante corretto trovato:', button);
+                    button.classList.add('correct');
+                }
+            });
             // Incremento il punteggio delle risposte corrette
             correctAnswers++;
         } else {
+            console.log('Risposta sbagliata:', selectedCountry.name.common);
             // Se è sbagliata, mostro il messaggio di errore e la risposta corretta
             resultText.textContent = `Sbagliato! La risposta corretta era ${currentCountry.name.common}.`;
             resultText.style.color = 'red';
+            // Coloro di rosso il pulsante sbagliato e di verde il corretto
+            const buttons = optionsContainer.querySelectorAll('button');
+            buttons.forEach(button => {
+                if (button.textContent === selectedCountry.name.common) {
+                    console.log('Pulsante sbagliato trovato:', button);
+                    button.classList.add('wrong');
+                }
+                if (button.textContent === currentCountry.name.common) {
+                    console.log('Pulsante corretto trovato:', button)
+                    button.classList.add('correct');
+                }
+            });
         }
 
         // Incremento il numero di risposte
@@ -116,8 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Aggiorno il punteggio
         updateScore();
 
-        // Disabilito i pulsanti delle opzioni per evitare ulteriori clic
-        const buttons = optionsContainer.querySelectorAll('button');
+        // Disabilito i pulsanti delle opzioni per evitare ulteriori clicks
         buttons.forEach(button => {
             button.disabled = true;
         });
