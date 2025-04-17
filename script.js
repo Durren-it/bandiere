@@ -149,6 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
             button.disabled = true;
         });
 
+        // Mostro i dettagli della nazione
+        showCountryDetails(currentCountry);
+
         // Mostro il pulsante "Next" per passare alla prossima domanda
         nextBtn.style.display = 'block';
     }
@@ -180,6 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
         input.disabled = true;
         const submitButton = optionsContainer.querySelector('button');
         submitButton.disabled = true;
+
+        // Mostro i dettagli della nazione
+        showCountryDetails(currentCountry);
     
         // Mostro il pulsante "Next" per passare alla prossima domanda
         nextBtn.style.display = 'block';
@@ -200,9 +206,29 @@ document.addEventListener('DOMContentLoaded', () => {
         updateScore();
     });
 
-    // Assegno al bottone "Next" l'evento per passare alla prossima domanda
-    nextBtn.addEventListener('click', newQuestion);
+    // Funzione per mostrare i dati della nazione
+    function showCountryDetails(country) {
+        // Trovo il contenitore per i dettagli
+        const detailsContainer = document.getElementById('country-details');
     
+        // Aggiorno i dettagli della nazione
+        detailsContainer.innerHTML = `
+            <p><strong>Descrizione della bandiera:</strong> ${country.flags.alt || 'N/A'}</p>
+            <p><strong>Area:</strong> ${country.area.toLocaleString()} km²</p>
+            <p><strong>Popolazione:</strong> ${country.population.toLocaleString()}</p>
+        `;
+        detailsContainer.style.display = 'block'; // Assicuro che sia visibile
+    }
+
+    // Assegno al bottone "Next" gli eventi per passare alla prossima domanda
+    nextBtn.addEventListener('click', () => {
+        // Nascondo i dettagli della nazione corretta precedente
+        const detailsContainer = document.getElementById('country-details');
+        detailsContainer.style.display = 'none';
+
+        // Passo alla prossima domanda
+        newQuestion();
+    });
     // Game loop: recupero le nazioni dall'API e inizio il gioco
     fetchCountries();
 
