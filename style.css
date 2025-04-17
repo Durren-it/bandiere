@@ -17,6 +17,7 @@ body {
 }
 
 /* Dark Mode */
+
 body.dark-mode {
     background-color: #121212; 
     color: #e0e0e0; 
@@ -53,9 +54,13 @@ body.dark-mode #result {
     color: #e0e0e0; 
 }
 
+
+/* Stili del quiz */
+
 #intestazione {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #quiz-container {

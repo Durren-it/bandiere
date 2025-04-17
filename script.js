@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resultText.textContent = `Sbagliato! La risposta corretta era ${currentCountry.name.common}.`;
             resultText.style.color = 'red';
         }
+
         // Mostro il pulsante "Next" per passare alla prossima domanda
         nextBtn.style.display = 'block';
     }
