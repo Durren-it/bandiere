@@ -14,7 +14,7 @@ Indovina la bandiera è un semplice gioco in cui l'utente deve indovinare la naz
 1. Clona il repository:
 
     ```bash
-    git clone https://github.com/unozer/bandiere.git
+    git clone https://github.com/Durren-it/bandiere.git
     ```
 
 2. Naviga nella cartella del progetto:
@@ -25,10 +25,12 @@ Indovina la bandiera è un semplice gioco in cui l'utente deve indovinare la naz
 
 3. Apri il file `index.html` nel tuo browser preferito.
 
+4. Repository di partenza: https://github.com/unozer/bandiere
+
 ## Struttura del Progetto
 
 - `index.html`: Struttura della pagina web.
 - `style.css`: Stili per la pagina web.
 - `script.js`: Logica del gioco e chiamata all'API.
-- `evolutive.txt`: Lista di evolutive da applicare al progetto.
+- `evolutive.txt`: Lista di evolutive da applicate al progetto.
 - Per testare il codice, puoi visitare il [sito di deploy](https://astounding-hummingbird-15e540.netlify.app/).
