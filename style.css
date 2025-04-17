@@ -166,3 +166,22 @@ body.dark-mode #options-container button.wrong {
     background-color: #dc3545 !important;
     color: #fff !important;
 }
+
+/* Stile per i dettagli della nazione corretta */
+#country-details {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    line-height: 1.5;
+    display: none; /* Nascondo il contenitore finchè non viene data una risposta nel JS */
+}
+
+/* Modalità dark mode per i dettagli */
+body.dark-mode #country-details {
+    background-color: #1e1e1e;
+    border-color: #444;
+    color: #e0e0e0;
+}
