@@ -31,3 +31,4 @@ Indovina la bandiera è un semplice gioco in cui l'utente deve indovinare la naz
 - `style.css`: Stili per la pagina web.
 - `script.js`: Logica del gioco e chiamata all'API.
 - `evolutive.txt`: Lista di evolutive da applicare al progetto.
+- Per testare il codice, puoi visitare il [sito di deploy](https://astounding-hummingbird-15e540.netlify.app/).
