@@ -16,6 +16,48 @@ body {
     margin: 0;
 }
 
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212; 
+    color: #e0e0e0; 
+}
+
+body.dark-mode #quiz-container {
+    background: #1e1e1e; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+body.dark-mode #flag {
+    border: 1px solid #444;
+}
+
+body.dark-mode #options-container button {
+    background: #0056b3; 
+    color: #e0e0e0; 
+}
+
+body.dark-mode #options-container button:hover {
+    background: #003f7f; 
+}
+
+body.dark-mode #next-btn {
+    background: #218838; 
+    color: #e0e0e0; 
+}
+
+body.dark-mode #next-btn:hover {
+    background: #1a6c2e; 
+}
+
+body.dark-mode #result {
+    color: #e0e0e0; 
+}
+
+#intestazione {
+    display: flex;
+    justify-content: space-between;
+}
+
 #quiz-container {
     background: #fff;
     padding: 20px;

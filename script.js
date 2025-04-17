@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const optionsContainer = document.getElementById('options-container');
     const nextBtn = document.getElementById('next-btn');
     const resultText = document.getElementById('result');
+    const darkModeButton = document.getElementById('dark-button');
 
     // creo l'array delle nazioni e la variabile per la nazione corrente
     let countries = [];
@@ -75,4 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Game loop: recupero le nazioni dall'API e inizio il gioco
     fetchCountries();
+
+       
+    // Aggiungo un evento click all'immagine per attivare/disattivare la dark mode
+    darkModeButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+    });
+
 });
